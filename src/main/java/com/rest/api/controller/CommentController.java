@@ -9,8 +9,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
+/**
+ * annotation in order to build RESTful API
+ */
 @RestController
+/**
+ * lombok, access modifiers is public, if access modifiers is private,
+ * declare attribute @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
+ */
 @RequiredArgsConstructor
 @RequestMapping("/comment")
 public class CommentController {
@@ -24,5 +32,20 @@ public class CommentController {
     @PostMapping("/create")
     public ResponseEntity<Comment> createComment(@RequestBody CommentDTO dto) {
         return new ResponseEntity<>(commentService.save(dto), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Comment>> findById(@PathVariable("id") Long id){
+        return new ResponseEntity<>(commentService.findById(id), HttpStatus.OK);
+    }
+
+    @PutMapping("update")
+    public ResponseEntity<Comment> update(@RequestParam("id") Long id, @RequestBody CommentDTO dto){
+        return new ResponseEntity<>(commentService.update(dto, id), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> delete(@RequestParam("idToDelete") Long id){
+        return new ResponseEntity<>(commentService.delete(id), HttpStatus.OK);
     }
 }

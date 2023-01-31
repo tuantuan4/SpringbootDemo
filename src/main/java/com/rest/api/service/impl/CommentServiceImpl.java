@@ -35,4 +35,21 @@ public class CommentServiceImpl implements CommentService {
 //        cmt.setPost(dto.getPost());
         return commentRepository.save(cmt);
     }
+
+    @Override
+    public Comment update(CommentDTO dto, Long id) {
+        Comment comment = commentRepository.findById(id).get();
+        comment.setEmail(dto.getEmail());
+        comment.setBody(dto.getBody());
+        comment.setName(dto.getName());
+        return commentRepository.save(comment);
+    }
+
+    @Override
+    public String delete(Long id) {
+        commentRepository.deleteById(id);
+        return "Success";
+    }
+
+
 }
