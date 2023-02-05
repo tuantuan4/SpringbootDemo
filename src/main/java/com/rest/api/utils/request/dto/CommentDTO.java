@@ -1,4 +1,4 @@
-package com.rest.api.dto;
+package com.rest.api.utils.request.dto;
 
 import com.rest.api.entity.Post;
 import lombok.Data;
@@ -10,11 +10,13 @@ import lombok.Data;
 
 public class CommentDTO {
 
+    private Long id;
+
     private String name;
 
     private String email;
 
     private String body;
 
-    private Long postId;
+    private Post post;
 }

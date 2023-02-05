@@ -1,8 +1,9 @@
 package com.rest.api.controller;
 
-import com.rest.api.dto.CommentDTO;
+import com.rest.api.utils.request.dto.CommentDTO;
 import com.rest.api.entity.Comment;
 import com.rest.api.service.CommentService;
+import com.rest.api.utils.response.CommentRespondDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,22 +26,22 @@ public class CommentController {
     private final CommentService commentService;
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<Comment>> getAllComment(){
+    public ResponseEntity<List<CommentRespondDTO>> getAllComment(){
         return new ResponseEntity<>(commentService.getAll(), HttpStatus.OK);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Comment> createComment(@RequestBody CommentDTO dto) {
+    public ResponseEntity<CommentRespondDTO> createComment(@RequestBody CommentDTO dto) {
         return new ResponseEntity<>(commentService.save(dto), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Comment>> findById(@PathVariable("id") Long id){
+    public ResponseEntity<Optional<CommentRespondDTO>> findById(@PathVariable("id") Long id){
         return new ResponseEntity<>(commentService.findById(id), HttpStatus.OK);
     }
 
     @PutMapping("update")
-    public ResponseEntity<Comment> update(@RequestParam("id") Long id, @RequestBody CommentDTO dto){
+    public ResponseEntity<CommentRespondDTO> update(@RequestParam("id") Long id, @RequestBody CommentDTO dto){
         return new ResponseEntity<>(commentService.update(dto, id), HttpStatus.OK);
     }
 

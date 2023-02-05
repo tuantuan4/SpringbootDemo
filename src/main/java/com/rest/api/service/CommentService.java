@@ -1,19 +1,20 @@
 package com.rest.api.service;
 
-import com.rest.api.dto.CommentDTO;
+import com.rest.api.utils.request.dto.CommentDTO;
 import com.rest.api.entity.Comment;
+import com.rest.api.utils.response.CommentRespondDTO;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface CommentService {
-    List<Comment> getAll();
+    List<CommentRespondDTO> getAll();
 
-    Optional<Comment> findById(Long id);
+    Optional<CommentRespondDTO> findById(Long id);
 
-    Comment save(CommentDTO dto);
+    CommentRespondDTO save(CommentDTO comment);
 
-    Comment update(CommentDTO dto, Long id);
+    CommentRespondDTO update(CommentDTO dto, Long id);
 
     String delete(Long id);
 }
