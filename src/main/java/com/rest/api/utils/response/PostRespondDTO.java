@@ -1,4 +1,4 @@
-package com.rest.api.utils.request.dto;
+package com.rest.api.utils.response;
 
 import com.rest.api.entity.Comment;
 import lombok.Data;
@@ -6,7 +6,8 @@ import lombok.Data;
 import java.util.Set;
 
 @Data
-public class PostDTO {
+public class PostRespondDTO {
+
     private Long id;
 
     private String title;
@@ -15,6 +16,6 @@ public class PostDTO {
 
     private String content;
 
-//    private Set<Comment> comments;
+    private Set<CommentRespondDTO> comments;
 
 }

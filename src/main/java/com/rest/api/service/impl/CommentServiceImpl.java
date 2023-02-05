@@ -21,13 +21,13 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<CommentRespondDTO> getAll() {
         List<Comment> comments = commentRepository.findAll();
-        return comments.stream().map(c -> mapperToDTO(c)).collect(Collectors.toList());
+        return comments.stream().map(c -> mapperToCommentDTO(c)).collect(Collectors.toList());
     }
 
     @Override
     public Optional<CommentRespondDTO> findById(Long id) {
         Comment comment = commentRepository.findById(id).get();
-        return Optional.of(mapperToDTO(comment));
+        return Optional.of(mapperToCommentDTO(comment));
     }
 
     @Override
@@ -38,7 +38,7 @@ public class CommentServiceImpl implements CommentService {
         cmt.setBody(comment.getBody());
 //        cmt.setPost(dto.getPost());
         Comment saveComment = commentRepository.save(cmt);
-        return mapperToDTO(saveComment);
+        return mapperToCommentDTO(saveComment);
     }
 
     @Override
@@ -47,16 +47,16 @@ public class CommentServiceImpl implements CommentService {
         comment.setEmail(dto.getEmail());
         comment.setBody(dto.getBody());
         comment.setName(dto.getName());
-        return mapperToDTO(commentRepository.save(comment)) ;
+        return mapperToCommentDTO(commentRepository.save(comment)) ;
     }
 
     @Override
     public String delete(Long id) {
         commentRepository.deleteById(id);
-        return "Success";
+        return "Delete Comment Success";
     }
 
-    private CommentRespondDTO mapperToDTO(Comment comment) {
+    public static CommentRespondDTO mapperToCommentDTO(Comment comment) {
         CommentRespondDTO dto = new CommentRespondDTO();
         dto.setId(comment.getId());
         dto.setBody(comment.getBody());
