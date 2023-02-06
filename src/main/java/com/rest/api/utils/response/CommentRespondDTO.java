@@ -1,5 +1,6 @@
 package com.rest.api.utils.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rest.api.entity.Post;
 import lombok.Data;
 
@@ -13,6 +14,7 @@ public class CommentRespondDTO {
 
     private String body;
 
+    @JsonIgnore
     private Post post;
 
 }

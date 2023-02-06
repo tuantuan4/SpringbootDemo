@@ -1,5 +1,6 @@
 package com.rest.api.service.impl;
 
+import com.rest.api.errors.ResourceNotFoundException;
 import com.rest.api.utils.request.dto.PostDTO;
 import com.rest.api.entity.Comment;
 import com.rest.api.entity.Post;
@@ -9,6 +10,7 @@ import com.rest.api.utils.response.PostRespondDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.lang.module.ResolutionException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -28,6 +30,8 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Optional<PostRespondDTO> findById(Long id) {
+        postRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Post not found with id: " + id));
+
         return Optional.of(mapperToPostDTO(postRepository.findById(id).get()));
     }
 
@@ -44,7 +48,8 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public PostRespondDTO update(PostDTO dto, Long id) {
-        Post p = postRepository.findById(id).get();
+        Post p = postRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Post not found with id: " + id));
         p.setDescription(dto.getDescription());
         p.setTitle(dto.getTitle());
         p.setContent(dto.getContent());
@@ -53,6 +58,8 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public String delete(Long id) {
+        postRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Post not found to delete id: " + id));
         postRepository.deleteById(id);
         return "Delete Post Success";
     }
@@ -63,7 +70,9 @@ public class PostServiceImpl implements PostService {
         dto.setTitle(entity.getTitle());
         dto.setDescription(entity.getDescription());
         dto.setContent(entity.getContent());
-//        dto.setComments(entity.getComments().stream().map(c -> mapperToCommentDTO(c)).collect(Collectors.toSet()));
+        if(entity.getComments().size() > 0){
+            dto.setComments(entity.getComments().stream().map(c -> mapperToCommentDTO(c)).collect(Collectors.toSet()));
+        }
         return dto;
     }
 }

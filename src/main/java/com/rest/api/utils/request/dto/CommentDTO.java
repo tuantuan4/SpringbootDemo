@@ -18,5 +18,5 @@ public class CommentDTO {
 
     private String body;
 
-    private Post post;
+    private Long postId;
 }

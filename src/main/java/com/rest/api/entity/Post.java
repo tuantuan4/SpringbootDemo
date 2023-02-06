@@ -2,10 +2,13 @@ package com.rest.api.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "post", uniqueConstraints = @UniqueConstraint(columnNames = "title"))
 public class Post {
