@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
     private final PostService postService;
 
-    @GetMapping("/getAll")
+    @GetMapping("")
     public ResponseEntity<Object> findAll(){
         return new ResponseEntity<>(postService.getAll(), HttpStatus.OK);
     }
