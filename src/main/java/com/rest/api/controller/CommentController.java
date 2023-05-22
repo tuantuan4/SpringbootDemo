@@ -21,7 +21,7 @@ import java.util.Optional;
  * declare attribute @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
  */
 @RequiredArgsConstructor
-@RequestMapping("/comment")
+@RequestMapping("/api/comment")
 public class CommentController {
     private final CommentService commentService;
 

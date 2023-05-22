@@ -12,7 +12,6 @@ import java.util.Set;
 @Entity
 @Table(name = "post", uniqueConstraints = @UniqueConstraint(columnNames = "title"))
 public class Post {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_id")
