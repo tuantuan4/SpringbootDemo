@@ -25,7 +25,7 @@ import java.util.Optional;
 public class CommentController {
     private final CommentService commentService;
 
-    @GetMapping("/getAll")
+    @GetMapping("")
     public ResponseEntity<List<CommentRespondDTO>> getAllComment(){
         return new ResponseEntity<>(commentService.getAll(), HttpStatus.OK);
     }

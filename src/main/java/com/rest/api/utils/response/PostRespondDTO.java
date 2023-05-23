@@ -7,15 +7,11 @@ import java.util.Set;
 
 @Data
 public class PostRespondDTO {
-
     private Long id;
-
     private String title;
-
     private String description;
-
     private String content;
-
-    private Set<CommentRespondDTO> comments;
+    private Long userId;
+//    private Set<CommentRespondDTO> comments;
 
 }
