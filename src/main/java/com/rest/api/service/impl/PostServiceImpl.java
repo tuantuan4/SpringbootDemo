@@ -4,7 +4,6 @@ import com.rest.api.entity.User;
 import com.rest.api.errors.ResourceNotFoundException;
 import com.rest.api.repository.UserRepository;
 import com.rest.api.utils.request.dto.PostDTO;
-import com.rest.api.entity.Comment;
 import com.rest.api.entity.Post;
 import com.rest.api.repository.PostRepository;
 import com.rest.api.service.PostService;
@@ -13,13 +12,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.module.ResolutionException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-import static com.rest.api.service.impl.CommentServiceImpl.mapperToCommentDTO;
-
 @Service
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService {

@@ -12,9 +12,11 @@ public interface CommentService {
 
     Optional<CommentRespondDTO> findById(Long id);
 
-    CommentRespondDTO save(CommentDTO comment);
+    CommentRespondDTO save(CommentDTO comment, Long idUser);
 
     CommentRespondDTO update(CommentDTO dto, Long id);
 
     String delete(Long id);
+
+    List<CommentRespondDTO> getAllCommentsInPost(Long idPost);
 }

@@ -25,20 +25,20 @@ import java.util.Optional;
 public class CommentController {
     private final CommentService commentService;
 
-    @GetMapping("")
-    public ResponseEntity<List<CommentRespondDTO>> getAllComment(){
-        return new ResponseEntity<>(commentService.getAll(), HttpStatus.OK);
-    }
-
-    @PostMapping("/create")
-    public ResponseEntity<CommentRespondDTO> createComment(@RequestBody CommentDTO dto) {
-        return new ResponseEntity<>(commentService.save(dto), HttpStatus.CREATED);
-    }
-
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<CommentRespondDTO>> findById(@PathVariable("id") Long id){
-        return new ResponseEntity<>(commentService.findById(id), HttpStatus.OK);
+    public ResponseEntity<List<CommentRespondDTO>> getAllCommentsInPost(@PathVariable("id") Long id){
+        return new ResponseEntity<>(commentService.getAllCommentsInPost(id), HttpStatus.OK);
     }
+
+    @PostMapping("/create/{id}")
+    public ResponseEntity<CommentRespondDTO> createComment(@PathVariable("id") Long id, @RequestBody CommentDTO dto) {
+        return new ResponseEntity<>(commentService.save(dto, id), HttpStatus.CREATED);
+    }
+
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Optional<CommentRespondDTO>> findById(@PathVariable("id") Long id){
+//        return new ResponseEntity<>(commentService.findById(id), HttpStatus.OK);
+//    }
 
     @PutMapping("update")
     public ResponseEntity<CommentRespondDTO> update(@RequestParam("id") Long id, @RequestBody CommentDTO dto){

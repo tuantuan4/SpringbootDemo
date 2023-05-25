@@ -17,18 +17,12 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@Table(name = "comments", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@Table(name = "comments", uniqueConstraints = @UniqueConstraint(columnNames = "body"))
 public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "email")
-    private String email;
 
     @Column(name = "body")
     private String body;

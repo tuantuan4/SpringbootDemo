@@ -7,10 +7,8 @@ import lombok.Data;
 @Data
 public class CommentRespondDTO {
     private Long id;
-    private String name;
-    private String email;
     private String body;
-
+    private Long postId;
     private Long userId;
     @JsonIgnore
     private Post post;
